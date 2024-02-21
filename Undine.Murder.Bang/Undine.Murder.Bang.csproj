@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>disable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Murder.Bang" Version="0.0.6.166-dev" />
+    <PackageReference Include="Undine.Core" Version="0.0.0.9" />
+  </ItemGroup>
+
+</Project>
