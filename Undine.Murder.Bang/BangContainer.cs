@@ -13,11 +13,13 @@ namespace Undine.Murder.Bang
         public World World { get; set; }
         public List<(global::Bang.Systems.ISystem system, bool isActive)> Systems { get; set; }
         public UndineComponentsLookup Lookup { get; set; }
+        List<BangSystem> SystemsToInitialize { get; set; }
 
         public BangContainer()
         {
             Systems = new List<(global::Bang.Systems.ISystem system, bool isActive)>();
             Lookup = new UndineComponentsLookup();
+            SystemsToInitialize = new();
         }
         public override void RegisterComponentType<A>(Action<object, IUnifiedEntity> action = null)
         {
@@ -75,34 +77,42 @@ namespace Undine.Murder.Bang
 
         public override ISystem GetSystem<A>(UnifiedSystem<A> system)
         {
-            return new BangSystem<A>()
+            var result= new BangSystem<A>()
             {
                 System = system,
             };
+            SystemsToInitialize.Add(result);
+            return result;
         }
 
         public override ISystem GetSystem<A, B>(UnifiedSystem<A, B> system)
         {
-            return new BangSystem<A, B>()
+            var result = new BangSystem<A, B>()
             {
                 System = system,
             };
+            SystemsToInitialize.Add(result);
+            return result;
         }
 
         public override ISystem GetSystem<A, B, C>(UnifiedSystem<A, B, C> system)
         {
-            return new BangSystem<A, B, C>()
+            var result = new BangSystem<A, B, C>()
             {
                 System = system,
             };
+            SystemsToInitialize.Add(result);
+            return result;
         }
 
         public override ISystem GetSystem<A, B, C, D>(UnifiedSystem<A, B, C, D> system)
         {
-            return new BangSystem<A, B, C, D>()
+            var result = new BangSystem<A, B, C, D>()
             {
                 System = system,
             };
+            SystemsToInitialize.Add(result);
+            return result;
         }
 
         public override void Run()
@@ -114,6 +124,10 @@ namespace Undine.Murder.Bang
         {
             base.Init();
             this.World = new World(this.Systems);
+            foreach(var system in SystemsToInitialize)
+            {
+                system.World = this.World;
+            }
         }
     }
 }
