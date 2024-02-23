@@ -4,7 +4,20 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>disable</Nullable>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+	  <Version>0.0.1</Version>
+	  <PackageProjectUrl>https://github.com/tomaszcekalo/Undine.Murder.Bang</PackageProjectUrl>
+	  <RepositoryUrl>https://github.com/tomaszcekalo/Undine.Murder.Bang</RepositoryUrl>
+	  <PackageLicenseExpression>MIT</PackageLicenseExpression>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Murder.Bang" Version="0.0.6.166-dev" />
